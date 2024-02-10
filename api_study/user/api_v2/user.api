@@ -1,0 +1,29 @@
+syntax = "v1"
+
+info (
+	title:   "user api"
+	desc:    "type desc here"
+	author:  "augustus"
+	email:   "augustus0508@outlook.com"
+	version: "type version here"
+)
+
+type LoginReq {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type UserInfoRep {
+	UserId   uint   `json:"userId"`
+	UserName string `json:"userName"`
+}
+
+service users {
+	@handler login
+	post /api/users/login (LoginReq) returns (string)
+
+	@handler userInfo
+	get /api/users/info returns (UserInfoRep)
+}
+
+//goctl api go -api users.api -dir .
